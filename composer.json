@@ -1,0 +1,34 @@
+{
+	"name": "iqnection/silverstripe-installer-complete",
+	"description": "IQnection SilverStripe Framework Installer Complete",
+	"keywords": ["iqnection"],
+	"license": "BSD-3-Clause",
+	"authors": [
+        {
+            "name": "IQnection",
+            "homepage": "http://www.iqnection.com"
+        }
+    ],
+	"require": {
+		"php": ">=5.3.2",
+		"composer/installers":"*",
+		"silverstripe/cms": "3.*",
+		"silverstripe/framework": "3.*",
+		"nathancox/minify": "dev-SS-3.0",
+		"unclecheese/betterbuttons": "*",
+		"silverstripe/googlesitemaps": "*",
+		"undefinedoffset/sortablegridfield": "*",
+		"iqnection-pages/basepages":"1.0.*",
+		"iqnection-modules/pagebuilder":"1.0.*",
+		"iqnection-modules/seo":"1.0.*",
+		"iqnection-modules/socialmedia":"1.0.*",
+		"iqnection-modules/security": "1.0.*"
+	},
+	"require-dev": {
+		"phpunit/PHPUnit": "~3.7@stable"
+	},
+	"config": {
+		"process-timeout": 600
+	},
+	"minimum-stability": "stable"
+}

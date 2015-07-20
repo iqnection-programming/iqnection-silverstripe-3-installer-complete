@@ -1,0 +1,30 @@
+---
+Name: mysite
+After:
+  - 'framework/*'
+  - 'cms/*'
+---
+# YAML configuration for SilverStripe
+# See http://doc.silverstripe.org/framework/en/topics/configuration
+# Caution: Indentation through two spaces, not tabs
+SSViewer:
+  theme: 'mysite'
+Director:
+  environment_type: 'dev'
+SiteConfig:
+  extensions:
+    - SiteConfig_Custom
+LeftAndMain:
+  extra_requirements_css:
+    - mysite/css/leftandmainextras.css
+BetterButtonsActions:
+  create:
+    BetterButton_Save: true
+    BetterButton_SaveAndClose: true
+    BetterButton_SaveAndAdd: true
+  edit:
+    BetterButton_Save: true
+    BetterButton_SaveAndClose: true
+    BetterButton_SaveAndAdd: true
+    BetterButton_Delete: true
+    BetterButtonFrontendLinksAction: true
