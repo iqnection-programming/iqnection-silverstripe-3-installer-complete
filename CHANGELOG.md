@@ -2,6 +2,9 @@
 # Change Log
 
 
+## [1.0.0]
+- Stable Build
+
 ## [0.0.2]
 - Template prep
 

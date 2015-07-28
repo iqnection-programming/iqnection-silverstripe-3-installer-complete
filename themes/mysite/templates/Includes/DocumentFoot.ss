@@ -1,3 +1,3 @@
-$AdditionalCode
+$TemplateAdditionalCode
 </body>
 </html>
