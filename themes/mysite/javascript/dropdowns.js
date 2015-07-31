@@ -1,4 +1,4 @@
-var main_nav = "#header_wrap > header nav";
+var main_nav = "#nav_wrap > nav";
 var touchbound = false;
 
 $(document).ready(function(){
