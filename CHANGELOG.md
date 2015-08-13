@@ -2,6 +2,9 @@
 # Change Log
 
 
+## [1.0.0.1]
+- Update for dropdowns.js, now mobile friendly again when not maburger nav
+
 ## [1.0.0]
 - Stable Build
 

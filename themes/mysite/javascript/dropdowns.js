@@ -38,52 +38,54 @@ function isTouch()
 {
 	if (!touchbound)
 	{
-		$(nav + ' li').each(function(){
-			
-			$(this).unbind("hover");
-			$(this).unbind("mouseover");
-			$(this).unbind("mouseout");
-			
-			if ($(this).children("ul").length > 0)
-			{
-				$(this).unbind('mouseout');
-				$(this).unbind('mouseover');
+		$(main_nav).each(function(){
+			$(this).find('li').each(function(){
 				
-				//$(this).children("ul").prepend("<li><a href='"+$(this).children("a").attr("href")+"'>"+$(this).children("a").html()+"</a></li>");
-			
-				$(this).children("a").bind('click', function(e){ 
-					e.preventDefault(); 
+				$(this).unbind("hover");
+				$(this).unbind("mouseover");
+				$(this).unbind("mouseout");
+				
+				if ($(this).find("ul").length > 0)
+				{
+					$(this).unbind('mouseout');
+					$(this).unbind('mouseover');
 					
-					if ($(this).attr("rel") == "open")
-					{
-						// clicking to close
-						$(this).attr("rel", "closed");
-						hideNav($(this).parent());
-					}
-					else
-					{
-						// are we clicking another top nav, or a sub nav
-						if ($(this).parents().children('a[rel=open]').length > 0)
+					//$(this).children("ul").prepend("<li><a href='"+$(this).children("a").attr("href")+"'>"+$(this).children("a").html()+"</a></li>");
+				
+					$(this).find("a").first().bind('click', function(e){ 
+						e.preventDefault(); 
+						
+						if ($(this).attr("rel") == "open")
 						{
-							if ($(this).parent('li').children('.dropdown').length == 0)
-							{
-								$('nav .dropdown').hide();
-								$("a[rel=open]").attr("rel", "closed");
-							}							
-							$(this).attr("rel", "open");
-							showNav($(this).parent());	
+							// clicking to close
+							$(this).attr("rel", "closed");
+							hideNav($(this).parent());
 						}
 						else
-						{						
-							$('nav .dropdown').hide();
-							$("a[rel=open]").attr("rel", "closed");
-							$(this).attr("rel", "open");
-							showNav($(this).parent());
+						{
+							// are we clicking another top nav, or a sub nav
+							if ($(this).parents().children('a[rel=open]').length > 0)
+							{
+								if ($(this).parent('li').children('.dropdown').length == 0)
+								{
+									$('nav .dropdown').hide();
+									$("a[rel=open]").attr("rel", "closed");
+								}							
+								$(this).attr("rel", "open");
+								showNav($(this).parent());	
+							}
+							else
+							{						
+								$('nav .dropdown').hide();
+								$("a[rel=open]").attr("rel", "closed");
+								$(this).attr("rel", "open");
+								showNav($(this).parent());
+							}
 						}
-					}
-					return false;
-				});
-			}
+						return false;
+					});
+				}
+			});
 		});
 		
 		touchbound = true;
