@@ -44,75 +44,81 @@ function responsiveNav(){
 	 * DESKTOP NAV
 	 */
 	if($(window).width() > break_point){
-		onBeforeSwitchToDesktop().done(function(){		
-			if($(main_nav).hasClass('mobile')){
-				$(main_nav).removeClass('mobile').addClass('desktop');
-				
-				/* Cleanup!
-				 * 1. Remove our nav toggle link
-				 * 2. Remove our cloned parent links in dropdowns
-				 * 3. Run setupNav() from dropdowns.js to assign hover events
-				 * 4. Hide open dropdowns
-				 * 5. Run spaceNav() to space out nav items
-				 */
-				$('#nav_toggle').remove();
-				$('.mobile_top').remove();
-				$(main_nav).find('li').css('display','');
-				$('nav .dropdown').hide();
-				setupNav();
-			}
-			if(space_nav)spaceNav(main_nav);
+		onBeforeSwitchToDesktop().done(function(){
+			$(main_nav).each(function(){		
+				if($(this).hasClass('mobile')){
+					$(this).removeClass('mobile').addClass('desktop');
+					
+					/* Cleanup!
+					 * 1. Remove our nav toggle link
+					 * 2. Remove our cloned parent links in dropdowns
+					 * 3. Run setupNav() from dropdowns.js to assign hover events
+					 * 4. Hide open dropdowns
+					 * 5. Run spaceNav() to space out nav items
+					 */
+					$('#nav_toggle').remove();
+					$('.mobile_top').remove();
+					$(this).find('li').css('display','');
+					$('nav .dropdown').hide();
+					setupNav();
+				}
+				if(space_nav)spaceNav(this);
+			});
 		});
 	/*
 	 * MOBILE NAV
 	 */	
 	} else {
 		onBeforeSwitchToMobile().done(function(){
-			if($(main_nav).hasClass('desktop')){				
-				$(main_nav).removeClass('desktop').removeClass('sized').addClass('mobile');
-				$(main_nav).find('> ul.fullwidth > '+space_tag).removeAttr('style');
-				$(main_nav).find('> ul.fullwidth > li').hide();
-				$(main_nav).find('li').each(function(){
-					$(this).unbind('mouseenter').unbind('mouseleave')
-					var a_tag = $(this).find('> a');
-					
-					/* If a nav item has a dropdown menu we have to make it mobile friendly
-					 * 1. Add a clone of the parent to the beginning of the dropdown items
-					 * 2. Override parent's default action to instead open the dropdown menu
+			$(main_nav).each(function(i,me){
+				if($(me).hasClass('desktop')){				
+					$(me).removeClass('desktop').removeClass('sized').addClass('mobile');
+					$(me).find('> ul.fullwidth > '+space_tag).removeAttr('style');
+					$(me).find('> ul.fullwidth > li').hide();
+					$(me).find('li').each(function(){
+						$(this).unbind('mouseenter').unbind('mouseleave')
+						var a_tag = $(this).find('> a');
+						
+						/* If a nav item has a dropdown menu we have to make it mobile friendly
+						 * 1. Add a clone of the parent to the beginning of the dropdown items
+						 * 2. Override parent's default action to instead open the dropdown menu
+						 */
+						if(a_tag.siblings('.dropdown').length){
+							if((!a_tag.siblings('.dropdown').children('.mobile_top').length)&&(!a_tag.attr('heading')))a_tag.siblings('.dropdown').prepend('<li class="mobile_top"><a href="'+a_tag.attr('href')+'">'+a_tag.html()+'</a></li>');
+							a_tag.unbind('click').click(function(){
+								a_tag.siblings('.dropdown').slideToggle(200);
+								return false;		
+							});	
+						}	
+					});
+					/*
+					 * Add our nav toggle button
 					 */
-					if(a_tag.siblings('.dropdown').length){
-						if((!a_tag.siblings('.dropdown').children('.mobile_top').length)&&(!a_tag.attr('heading')))a_tag.siblings('.dropdown').prepend('<li class="mobile_top"><a href="'+a_tag.attr('href')+'">'+a_tag.html()+'</a></li>');
-						a_tag.unbind('click').click(function(){
-							a_tag.siblings('.dropdown').slideToggle(200);
-							return false;		
-						});	
-					}	
-				});
-				/*
-				 * Add our nav toggle button
-				 */
-				if(!$('#nav_toggle').length){
-					$(main_nav).find('> ul').first().prepend("<li id='nav_toggle'><a href='javascript:;'>Navigation</a></li>");
-					$("#nav_toggle").click(function(){ $(main_nav).find('> ul > li').not('#nav_toggle').slideToggle(200); });
+					if(!$('#nav_toggle').length){
+						$(me).find('> ul').first().prepend("<li id='nav_toggle'><a href='javascript:;'>Navigation</a></li>");
+						$("#nav_toggle").click(function(){ $(me).find('> ul > li').not('#nav_toggle').slideToggle(200); });
+					}
 				}
-			}
+			});
 		});
 	}
 }
 
 function onBeforeSwitchToDesktop(){
+	$(":root").removeClass('mobile');
 	return $.Deferred().resolve();
 }
 
 function onBeforeSwitchToMobile(){
+	$(":root").addClass('mobile');
 	return $.Deferred().resolve();
 }
 /*
  * Spaces nav items on desktop
  */
 function spaceNav(fixnav){
-	$(fixnav).each(function(){	
-		var items = $(this).find('> ul.fullwidth > '+space_tag);
+	$(fixnav).find('>ul.fullwidth').each(function(){	
+		var items = $(this).find('> '+space_tag);
 		var item_total = items.length;
 		var nav_width = $(this).width();	
 		var item_width = 0;

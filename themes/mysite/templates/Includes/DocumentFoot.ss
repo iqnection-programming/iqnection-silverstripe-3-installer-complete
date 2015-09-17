@@ -1,3 +1,3 @@
-$TemplateAdditionalCode
+$AdditionalCode.RAW
 </body>
 </html>

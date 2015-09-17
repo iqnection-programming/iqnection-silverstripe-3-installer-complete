@@ -2,6 +2,11 @@
 # Change Log
 
 
+## [1.0.1]
+- responsive.js updates/fixes
+- $AdditionalCode changed in template
+- Added CodeEditorField as part of base build
+
 ## [1.0.0.1]
 - Update for dropdowns.js, now mobile friendly again when not maburger nav
 
