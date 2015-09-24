@@ -132,7 +132,6 @@ function spaceNav(fixnav){
 				});
 			}
 		}else{
-			if ($(this).hasClass('sized')) return;
 			var space = Math.floor( (nav_width-item_width) / item_total );
 			if(space){
 				items.each(function(index){
@@ -141,7 +140,6 @@ function spaceNav(fixnav){
 					$(this).css('width',percentOfCt.toFixed(2) + '%');
 				});
 			}
-			$(this).addClass('sized');
 		}
 	});
 }
