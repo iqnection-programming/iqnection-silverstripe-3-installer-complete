@@ -22,11 +22,30 @@ $(document).ready(function(){
 	});
 	
 	fixAllHeights();
+	fixIframes();
 });
 
 $(window).resize(function(){
 	fixAllHeights();
+	fixIframes();
 });
+
+function fixIframes(){
+	$("iframe").each(function(){
+		if (!$(this).attr('ratio') && $(this).attr('height') && $(this).attr('width')){
+			$(this).attr('ratio',($(this).attr('height')/$(this).attr('width')));
+			var src=$(this).attr('src');
+			$(this).attr('src',src+((src.indexOf("?") != -1)?"&":"?")+'wmode=transparent');
+		}
+	});
+	setTimeout(function(){
+		$("iframe").each(function(){
+			if($(this).attr('ratio')){
+				$(this).height($(this).width() * $(this).attr('ratio'));
+			}
+		});
+	},500);
+}
 
 function fixAllHeights(){
 	fixHeights({selector:'.parent_sameheight', method:'parent'});

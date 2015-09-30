@@ -2,6 +2,9 @@
 # Change Log
 
 
+## [1.0.2]
+- responsive iframe support
+
 ## [1.0.1]
 - responsive.js updates/fixes
 - $AdditionalCode changed in template
