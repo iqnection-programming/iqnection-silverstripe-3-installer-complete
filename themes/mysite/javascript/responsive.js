@@ -136,8 +136,8 @@ function spaceNav(fixnav){
 			if(space){
 				items.each(function(index){
 					var newWidth = $(this).width() + space;
-					var percentOfCt = (newWidth / nav_width)*100;
-					$(this).css('width',percentOfCt.toFixed(2) + '%');
+					var percentOfCt = Math.floor((newWidth / nav_width)*10000)*0.01;
+					$(this).css('width',percentOfCt + '%');
 				});
 			}
 		}

@@ -49,6 +49,9 @@ input.currency							{ background:url(/themes/mysite/images/icons/money_dollar.p
 
 .checkbox_ct > label					{ margin-bottom: -22px; margin-left: 30px; }
 .checkbox_ct > input					{ float: left; clear: both; }
+div.checkbox:after						{ content:"."; display:block; height:0; clear:both; zoom:1; visibility:hidden; }
+div.checkbox > input					{ margin-left:35%; }
+div.checkbox > label					{ text-align:left !important; float:right; width:61%; padding-top:2px !important; }
 
 label.error								{ color:#c00000; }
 
@@ -84,6 +87,9 @@ h3.form-header							{ clear:both; width:65%; float:right; padding:0 0 5px 0; ma
 	div.field > label					{ width:100% !important; padding-top:15px !important; line-height:18px; clear:both; text-align:left !important; }
 	div.field > div						{ width:100% !important; min-height:30px; float:left !important; clear:left !important; }
 	.formRight							{ width:100%; }
+
+	div.checkbox > input				{ margin-left:0; float:left; }
+	div.checkbox > label				{ padding-top:0px !important; float:none; clear:none; padding-left:20px; }
 		
 	h3.form-header						{ width:100% !important; float:left !important; margin-bottom:0px !important; }
 	.stacked input.required + label.right			{ overflow:hidden; white-space:nowrap; font-size:11px !important; }

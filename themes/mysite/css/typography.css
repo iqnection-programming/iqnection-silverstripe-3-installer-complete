@@ -62,3 +62,8 @@
 }
 
 .right form .field .sort-control label	{ font-weight:normal !important; font-size:11px !important; }
+
+@media (max-width:500px){
+	.typography img					{ display:block; float:none !important; margin-left:auto !important; margin-right:auto !important; }
+}
+
