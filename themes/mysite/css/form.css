@@ -53,6 +53,7 @@ div.checkbox:after						{ content:"."; display:block; height:0; clear:both; zoom
 div.checkbox > input					{ margin-left:35%; }
 div.checkbox > label					{ text-align:left !important; float:right; width:61%; padding-top:2px !important; }
 
+span.message.required					{ color:#c00000; display:block; clear:both; text-align:left; }
 label.error								{ color:#c00000; }
 
 .message								{ text-align: center; font: bold 15px/15px Verdana, sans-serif; margin-bottom: 20px; }
@@ -70,7 +71,9 @@ label.error								{ color:#c00000; }
 .stacked.col3 .fieldgroup-field						{ width:32%; float:left; margin-left:2%; }
 .stacked.col3 .fieldgroup-field:first-child			{ margin-left:0; }
 .stacked label.right				{ font-style:italic; margin:0; text-align:left !important; font-size:14px; float:none; }
-.stacked input.required + label.right:after{ content:" *"; color:#c00000; }
+.stacked input.required + label.right:after,
+.stacked select.required + label.right:after,
+.stacked textarea.required + label.right:after{ content:" *"; color:#c00000; }
 
 
 /* Headers */

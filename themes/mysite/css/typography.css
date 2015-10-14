@@ -43,13 +43,13 @@
 .typography .center					{ text-align: center; }
 .typography .right					{ text-align: right; }
 
-.typography img						{ max-width:100%; height:auto; }
+.typography p img					{ max-width:100%; height:auto; }
 .typography img.right				{ float: right;  margin: 0 0 5px 15px; }
 .typography img.left				{ float: left; margin: 0 15px 5px 0; }
 .typography img.center				{ display:block; margin: 0 auto 5px; }
 
 .typography .captionImage			{ max-width:100%; }
-.typography .captionImage img		{ padding: 0; }
+.typography .captionImage img		{ padding: 0; max-width:100%; height:auto !important; }
 .typography .captionImage p			{ margin: 0; font: bold 10px/14px Arial, sans-serif; }
 .typography .captionImage.left		{ float: left; margin: 0 10px 5px 0; padding: 5px; background: #e8e8e8; text-align: center; }
 .typography .captionImage.right		{ float: right; margin: 0 0 5px 10px; padding: 5px; background: #e8e8e8; text-align: center; }
