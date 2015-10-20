@@ -2,6 +2,9 @@
 # Change Log
 
 
+## [1.0.4]
+- moved code editor field back into this module in composer requirements
+
 ## [1.0.3]
 - SS 3.2 is out of beta, but not fully ready, this update sets composer to use SS 3.1
 
