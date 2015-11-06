@@ -1,6 +1,6 @@
 #form_page_left							{ width:45%; float:left; }
 #form_page_right						{ width:50%; float:right; }
-#form_full								{ width:700px; max-width:100%; margin:0px auto; clear:both; }
+.form_full								{ width:700px; max-width:100%; margin:0px auto; clear:both; }
 
 fieldset								{ border:none; padding:0; margin:0; width:100%; }
 

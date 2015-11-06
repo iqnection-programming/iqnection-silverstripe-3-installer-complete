@@ -4,7 +4,7 @@
     </header>
 </div><!--header_wrap-->
 
-<div id="nav_wrap">
+<div id="nav_wrap" class="wrap">
 	<nav class="desktop">
 		<ul>
 			<% loop Menu(1) %>
