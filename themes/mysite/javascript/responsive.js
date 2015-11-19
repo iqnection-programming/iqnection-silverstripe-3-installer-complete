@@ -117,13 +117,13 @@ function onBeforeSwitchToMobile(){
  * Spaces nav items on desktop
  */
 function spaceNav(fixnav){
-	$(fixnav).find('>ul.fullwidth').each(function(){	
-		var items = $(this).find('> '+space_tag);
+	$(fixnav).each(function(){	
+		var items = $(this).find('> ul.fullwidth > '+space_tag);
 		var item_total = items.length;
-		var nav_width = $(this).width();	
+		var nav_width = $(this).find('> ul.fullwidth').width();	
 		var item_width = 0;
-		items.each(function(){item_width+=Math.floor($(this).width())});
-		if (edges || !use_percent){			
+		items.css('width','auto').each(function(){item_width+=Math.floor($(this).width())});
+		if (edges && !use_percent){			
 			var space = Math.floor((((nav_width-width_fix)-item_width) / ((item_total - (edges ? 1 : 0))*2)));
 			if(space){
 				items.each(function(index){
@@ -131,13 +131,22 @@ function spaceNav(fixnav){
 					if(!edges || index != (item_total - 1))$(this).css(type+'-right',space+'px');			
 				});
 			}
+		}else if (edges && use_percent){
+			var space = Math.floor( (nav_width-item_width) / ( (item_total * 2) - 2) );
+			if(space){
+				items.each(function(index){
+					var newWidth = $(this).width() + ( ( (!index) || (index+1==items.length) ) ? space : space*2);
+					var percentOfCt = (newWidth / nav_width)*100;
+					$(this).css('width',percentOfCt.toFixed(2) + '%');
+				});
+			}
 		}else{
 			var space = Math.floor( (nav_width-item_width) / item_total );
 			if(space){
 				items.each(function(index){
 					var newWidth = $(this).width() + space;
-					var percentOfCt = Math.floor((newWidth / nav_width)*10000)*0.01;
-					$(this).css('width',percentOfCt + '%');
+					var percentOfCt = (newWidth / nav_width)*100;
+					$(this).css('width',percentOfCt.toFixed(2) + '%');
 				});
 			}
 		}
