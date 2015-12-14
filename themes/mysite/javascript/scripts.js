@@ -5,6 +5,17 @@ $(document).ready(function(){
 		$(":root").addClass('done');
 		fixAllHeights();
 	});
+	// Code to set correct tracking account in GA across domains
+	if (typeof ga == 'function'){
+		ga(function(tracker) {
+			clientId = tracker.get('clientId');
+		});
+		var domain=window.location.host.replace(/www\./,'').replace(/content\./,'').replace(/blog\./,'');
+		$("a[href*='"+domain+"']").each(function(){
+			if (!$(this).is("[href*='www']"))
+				$(this).attr('href',$(this).attr('href')+'?clientId='+clientId);
+		});
+	}
 /*
 	setupFormField("#SearchForm_SearchFor", "Search");
 

@@ -2,6 +2,10 @@
 # Change Log
 
 
+## [1.1.0]
+- Updated for SilverStripe 3.2
+- Added support for GA across subdomains
+
 ## [1.0.4]
 - moved code editor field back into this module in composer requirements
 
