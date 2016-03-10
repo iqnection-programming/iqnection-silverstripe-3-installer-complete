@@ -26,7 +26,7 @@ $(document).ready(function(){
 	});
 */
 	$("a[href^=tel]").click(function(e){
-		if ($(window).width() > 500){
+		if ($(window).width() > 600){
 			e.preventDefault();
 			return false;
 		}
