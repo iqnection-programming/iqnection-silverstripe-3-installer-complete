@@ -2,6 +2,9 @@
 # Change Log
 
 
+## [1.1.2]
+- Just some JS cleanup
+
 ## [1.1.1]
 - Further support for ease of installation
 

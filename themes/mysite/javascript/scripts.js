@@ -97,42 +97,22 @@ function fixHeights(params)
 	}
 }
 
-function setupFormField(name, value) {
-	$(name).val(value);
-	$(name).blur(function(){ if( $(name).val() == "" ) { $(name).val(value); } });	
-	$(name).focus(function(){ if( $(name).val() == value ) { $(name).val(""); } });
-}
+function matchHeights(objects){
+	if($(objects).length > 1){
+		var max_height=0;
+		$(objects).css("height", "auto");
+		$(objects).each(function(){			
+			var my_height = $(this).outerHeight(false);
+			max_height = Math.max(max_height, my_height);
+		});
+		$(objects).each(function(){
+			$(this).height(max_height - (parseInt($(this).css("padding-top"), 10) + parseInt($(this).css("padding-bottom"), 10) + parseInt($(this).css("border-top-width"), 10) + parseInt($(this).css("border-bottom-width"), 10)));
+		});
 
-function setupImageField(name, className) {
-	$(name).addClass(className);
-	$(name).blur(function(){ if( $(name).val() == "" ) { $(name).addClass(className); } });	
-	$(name).focus(function(){ $(name).removeClass(className); });
-}
-
-function validateFormField(name, default_value, message) {
-	if ($(name).val() == "" || $(name).val() == default_value) {
-		alert(message);
-		$(name).focus();
-		return false;
 	}
-	return true;
 }
 
 function jScroll(anchor_name){
 	var aTag = $("a[name='"+anchor_name+"']");
 	$('html,body').animate({scrollTop: aTag.offset().top},'slow');
-}
-
-function ajaxLoad(url, resultFunc) {
-	jQuery.ajax({
-		url: url,
-		global: false,
-		dataType: "html",
-		async: false,
-		cache: false,
-		success: function(data) {
-			resultFunc(data);
-		}
-	});
-	return;
 }
