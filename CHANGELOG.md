@@ -2,6 +2,9 @@
 # Change Log
 
 
+## [1.1.3]
+- More JS cleanup/updates
+
 ## [1.1.2]
 - Just some JS cleanup
 

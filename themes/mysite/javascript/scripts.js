@@ -6,16 +6,20 @@ $(document).ready(function(){
 		fixAllHeights();
 	});
 	// Code to set correct tracking account in GA across domains
-	if (typeof ga == 'function'){
-		ga(function(tracker) {
-			clientId = tracker.get('clientId');
-		});
-		var domain=window.location.host.replace(/www\./,'').replace(/content\./,'').replace(/blog\./,'');
-		$("a[href*='"+domain+"']").each(function(){
-			if (!$(this).is("[href*='www']"))
-				$(this).attr('href',$(this).attr('href')+'?clientId='+clientId);
-		});
-	}
+	setTimeout(function(){
+		if (typeof ga == 'function'){
+			ga(function(tracker) {
+				clientId = tracker.get('clientId');
+			});
+			if (clientId != 'undefined'){
+				var domain=window.location.host.replace(/www\./,'').replace(/content\./,'').replace(/blog\./,'');
+				var prefix=window.location.host.replace(new RegExp(domain,"g"),'');
+				$("a[href*='"+domain+"']:not([href*='"+prefix+"'])").each(function(){
+					$(this).attr('href',$(this).attr('href')+'?clientId='+clientId);
+				});
+			}
+		}
+	},1000);
 /*
 	setupFormField("#SearchForm_SearchFor", "Search");
 
@@ -33,16 +37,16 @@ $(document).ready(function(){
 	});
 	
 	fixAllHeights();
-	fixIframes();
+	fixIframes($(".typograhpy iframe"));
 });
 
 $(window).resize(function(){
 	fixAllHeights();
-	fixIframes();
+	fixIframes($(".typograhpy iframe"));
 });
 
-function fixIframes(){
-	$("iframe").each(function(){
+function fixIframes(iframes){
+	iframes.each(function(){
 		if (!$(this).attr('ratio') && $(this).attr('height') && $(this).attr('width')){
 			$(this).attr('ratio',($(this).attr('height')/$(this).attr('width')));
 			var src=$(this).attr('src');
@@ -50,7 +54,7 @@ function fixIframes(){
 		}
 	});
 	setTimeout(function(){
-		$("iframe").each(function(){
+		iframes.each(function(){
 			if($(this).attr('ratio')){
 				$(this).height($(this).width() * $(this).attr('ratio'));
 			}
