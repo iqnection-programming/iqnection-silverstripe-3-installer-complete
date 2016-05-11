@@ -37,12 +37,12 @@ $(document).ready(function(){
 	});
 	
 	fixAllHeights();
-	fixIframes($(".typograhpy iframe"));
+	fixIframes($(".typography iframe"));
 });
 
 $(window).resize(function(){
 	fixAllHeights();
-	fixIframes($(".typograhpy iframe"));
+	fixIframes($(".typography iframe"));
 });
 
 function fixIframes(iframes){
