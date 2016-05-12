@@ -89,7 +89,9 @@ $.extend($.fn, {
 								parseInt(validator.settings.trackFormSubmit.value),
 								false
 							);
-							validator.nospam.submit( validator.currentForm );
+							setTimeout(function(){
+								validator.nospam.submit( validator.currentForm );
+							},100);
 						}
 						else
 						{
