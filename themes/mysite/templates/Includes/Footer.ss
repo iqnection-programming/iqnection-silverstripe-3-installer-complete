@@ -25,7 +25,7 @@
         </ul><!--social-->
         <p id="copyright">
             Copyright &copy; $CopyrightYear $CopyrightName<br />
-            <a href="http://www.iqnection.com" target="_blank">Website Design &amp; Website Hosting by IQnection</a>
+            <a href="http://www.iqnection.com" target="_blank">Website Design by IQnection - A Digital Marketing Agency</a>
         </p>
     </footer>
 </div><!--footer_wrap-->

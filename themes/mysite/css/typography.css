@@ -43,7 +43,7 @@
 .typography .center					{ text-align: center; }
 .typography .right					{ text-align: right; }
 
-.typography p img					{ max-width:100%; height:auto; }
+.typography img						{ max-width:100%; height:auto; }
 .typography img.right				{ float: right;  margin: 0 0 5px 15px; }
 .typography img.left				{ float: left; margin: 0 15px 5px 0; }
 .typography img.center				{ display:block; margin: 0 auto 5px; }

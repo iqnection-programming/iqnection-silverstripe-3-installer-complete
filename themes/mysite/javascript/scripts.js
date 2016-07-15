@@ -11,7 +11,7 @@ $(document).ready(function(){
 			ga(function(tracker) {
 				clientId = tracker.get('clientId');
 			});
-			if (clientId != 'undefined'){
+			if (typeof clientId != 'undefined'){
 				var domain=window.location.host.replace(/www\./,'').replace(/content\./,'').replace(/blog\./,'');
 				var prefix=window.location.host.replace(new RegExp(domain,"g"),'');
 				$("a[href*='"+domain+"']:not([href*='"+prefix+"'])").each(function(){
