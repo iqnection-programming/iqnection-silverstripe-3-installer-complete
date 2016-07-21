@@ -1,6 +1,8 @@
 ## Package: iqnection-silverstripe-3-installer-complete
 # Change Log
 
+## [1.2.0]
+- Updated for SilverStripe 3.4
 
 ## [1.1.3]
 - More JS cleanup/updates
