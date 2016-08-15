@@ -1,4 +1,4 @@
-<?
+<?php
 	function generateCode($word)
 	{
 		$len = strlen($word);

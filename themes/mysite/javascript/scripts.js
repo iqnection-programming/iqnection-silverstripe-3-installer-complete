@@ -9,13 +9,14 @@ $(document).ready(function(){
 	setTimeout(function(){
 		if (typeof ga == 'function'){
 			ga(function(tracker) {
-				clientId = tracker.get('clientId');
+				var clientId = tracker.get('clientId');
 			});
 			if (typeof clientId != 'undefined'){
 				var domain=window.location.host.replace(/www\./,'').replace(/content\./,'').replace(/blog\./,'');
 				var prefix=window.location.host.replace(new RegExp(domain,"g"),'');
 				$("a[href*='"+domain+"']:not([href*='"+prefix+"'])").each(function(){
-					$(this).attr('href',$(this).attr('href')+'?clientId='+clientId);
+					var patt = new RegExp(/\?/);
+					$(this).attr('href',$(this).attr('href')+(patt.test($(this).attr('href'))?"&":"?")+'clientId='+clientId);
 				});
 			}
 		}
