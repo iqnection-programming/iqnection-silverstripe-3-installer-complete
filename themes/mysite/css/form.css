@@ -43,6 +43,8 @@ div.field .optionset li					{ margin:0; padding:0; }
 
 input.currency							{ background:url(/themes/mysite/images/icons/money_dollar.png) no-repeat center left #ffffff !important; text-indent:15px !important; }
 
+.hpf									{ display:none; }
+
 .radio_input							{ float:left; width:auto; padding-right:30px; height:30px; line-height:30px; }
 .radio_input:last-child					{ padding-right:0px !important; }
 .radio_input input						{ margin:8px 5px 0px 0px !important; padding:0px !important; float:left !important; }
@@ -57,11 +59,11 @@ div.checkbox > label					{ text-align:left !important; float:right; width:61%; p
 span.message.required					{ color:#c00000; display:block; clear:both; text-align:left; }
 label.error								{ color:#c00000; }
 
-.message								{ text-align: center; font: bold 15px/15px Verdana, sans-serif; margin-bottom: 20px; }
+.message								{ text-align: center; font: bold 15px/15px Verdana, sans-serif; margin-bottom: 20px; display:block; clear:both; }
 .message.good							{ color: #757c5d; }
 .message.bad							{ color: #892516; }
 
-.Actions input							{ color:#FFF; font-size:16px; font-family:'Arial',sans-serif; outline:none; border:none; outline:none; padding:8px 15px; background:#001940; margin-bottom:3px; }
+.Actions input							{ color:#FFF; font-size:16px; outline:none; border:none; padding:8px 15px; background:#001940; margin-bottom:3px; }
 .Actions input:hover,
 .Actions input:focus					{ cursor:pointer; background: #03337E; }
 
