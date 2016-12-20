@@ -1,6 +1,10 @@
 ## Package: iqnection-silverstripe-3-installer-complete
 # Change Log
 
+## [1.3.0]
+- Added Additional Code fields for header and footer. To include tracking scripts and whatnot
+- Updated for SilverStripe 3.5
+
 ## [1.2.0]
 - Updated for SilverStripe 3.4
 
