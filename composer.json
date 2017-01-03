@@ -19,7 +19,7 @@
 		"silverstripe/googlesitemaps": "*",
 		"undefinedoffset/sortablegridfield": "*",
 		"nathancox/codeeditorfield" : "dev-master",
-		"iqnection-pages/basepages":"1.0.*",
+		"iqnection-pages/basepages":"1.1.*",
 		"iqnection-modules/pagebuilder":"1.0.*",
 		"iqnection-modules/seo":"1.0.*",
 		"iqnection-modules/socialmedia":"1.0.*",
