@@ -1,6 +1,7 @@
 <div id="header_wrap" class="wrap">
     <header>
-        <a href="/" id="logo"><img src="/themes/mysite/images/logo.png" alt="$SiteConfig.Title | $SiteConfig.Tagline" /></a>        
+        <a href="/" id="logo"><img src="/themes/mysite/images/logo.png" alt="$SiteConfig.Title | $SiteConfig.Tagline" /></a> 
+		<a href="javascript:;" id="nav_toggle"><span class="bar bar1"></span><span class="bar bar2"></span><span class="bar bar3"></span></a>       
     </header>
 </div><!--header_wrap-->
 
