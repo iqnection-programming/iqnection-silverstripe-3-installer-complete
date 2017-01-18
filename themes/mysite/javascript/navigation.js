@@ -1,4 +1,4 @@
-var main_nav = "#nav_wrap > nav";
+var main_nav = "#header_wrap nav";
 var touchbound = false;
 
 // Pixel width where nav toggles desktop/mobile
@@ -78,9 +78,9 @@ var width_fix = 1;
 			$(this).find('li').each(function() {
 				// First we clear off mobile click if present
 				$(this).find('> a').unbind('click');
-				$(this).hover(function() {				
+				$(this).mouseover(function() {				
 					if (!touchbound) { w.showDesktopNavDropdown($(this)); }
-				}, function() {
+				}).mouseout(function() {
 					if (!touchbound) { w.hideDesktopNavDropdown($(this)); }
 				});
 			});
@@ -88,7 +88,7 @@ var width_fix = 1;
 	};
 	
 	w.showDesktopNavDropdown = function(navItem){
-		navItem.children('.dropdown').fadeIn(200);
+		navItem.children('.dropdown').stop(true,false).fadeIn(200);
 	};
 	
 	w.hideDesktopNavDropdown = function(navItem){
@@ -149,6 +149,7 @@ var width_fix = 1;
 			});
 			
 			touchbound = true;
+			w.responsiveNav(true);
 		}
 	};
 	
@@ -156,7 +157,7 @@ var width_fix = 1;
 	 * Toggles nav styles
 	 * {nav} variable created in dropdowns.js
 	 */
-	w.responsiveNav = function(){
+	w.responsiveNav = function(force){
 		/*
 		 * DESKTOP NAV
 		 */
@@ -190,14 +191,19 @@ var width_fix = 1;
 			w.onBeforeSwitchToMobile().done(function(){
 				$(":root").addClass('mobile');
 				$(w.main_nav).each(function(i,nav){
-					if ($(nav).hasClass('desktop')){
+					if ($(nav).hasClass('desktop')||force===true){
 						$(nav).removeClass('desktop').addClass('mobile').css(flyout_side,'-200%');
 						$(nav).find('> ul.fullwidth > '+space_tag).removeAttr('style');
 						$(nav).find('li').each(function(){
 							$(this).unbind('mouseenter').unbind('mouseleave');
 							var a_tag = $(this).find('> a');
 							// clear off desktop touch event
-							a_tag.unbind('click mouseout mouseover mouseenter mouseleave');
+							a_tag.unbind('click');
+							a_tag.unbind('mouseout');
+							a_tag.unbind('mouseover');
+							a_tag.unbind('mouseenter');
+							a_tag.unbind('mouseleave');
+							a_tag.unbind('hover');
 							/* If a nav item has a dropdown menu we have to make it mobile friendly
 							 * 1. Add a clone of the parent to the beginning of the dropdown items
 							 * 2. Override parent's default action to instead open the dropdown menu
@@ -271,6 +277,7 @@ var width_fix = 1;
 	$(d).ready(function(){
 		$(w).bind('touchstart', function(){ w.isTouch(); });
 		if (navigator.msMaxTouchPoints) { $(w).bind('MSPointerDown', function(){ w.isTouch(); }); }
+		w.setupDesktopNav();
 		w.addResponsiveAdjustment(w.responsiveNav);
 	});
 
