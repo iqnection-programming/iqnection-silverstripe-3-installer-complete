@@ -1,4 +1,4 @@
-var main_nav = "#header_wrap nav";
+var main_nav = "#nav-wrap nav";
 var touchbound = false;
 
 // Pixel width where nav toggles desktop/mobile
@@ -11,13 +11,13 @@ var flyout_side = 'right';
 var space_nav = false;
 
 // Set to 'li > a' or 'li' based on which element should get padding/margin
-var space_tag = "li > a";
+var space_tag = "li";
 
 // Should be set to true if your first and last nav item are against site edges
 var edges = false;
 
 // Whether or not to use percentages when spacing teh nav. Only works when edges is false
-var use_percent = false;
+var use_percent = true;
 
 // Set type to 'padding' or 'margin'
 var type = 'padding';
@@ -88,10 +88,11 @@ var width_fix = 1;
 	};
 	
 	w.showDesktopNavDropdown = function(navItem){
-		navItem.children('.dropdown').stop(true,false).fadeIn(200);
+		navItem.children('.dropdown').fadeIn(200);
 	};
 	
 	w.hideDesktopNavDropdown = function(navItem){
+		if($(navItem).find(":hover").length) { return; }
 		navItem.children('.dropdown').fadeOut(100);
 	};
 	
@@ -100,10 +101,10 @@ var width_fix = 1;
 		{
 			$(main_nav).each(function(){
 				$(this).find('li').each(function(){
-					
-					$(this).unbind("hover");
-					$(this).unbind("mouseover");
-					$(this).unbind("mouseout");
+					var li=$(this);
+					li.unbind("hover");
+					li.unbind("mouseover");
+					li.unbind("mouseout");
 					
 					if ($(this).find("ul").length > 0)
 					{
@@ -115,34 +116,41 @@ var width_fix = 1;
 						$(this).find("a").first().bind('click', function(e){ 
 							e.preventDefault(); 
 							
-							if ($(this).attr("rel") === "open")
+							if (li.attr("rel") === "open")
 							{
 								// clicking to close
-								$(this).attr("rel", "closed");
-								w.hideDesktopNavDropdown($(this).parent());
+								li.attr("rel", "closed");
+								w.hideDesktopNavDropdown(li);
 							}
 							else
 							{
 								// are we clicking another top nav, or a sub nav
-								if ($(this).parents().children('a[rel=open]').length > 0)
+								if ($(this).parents('li[rel=open]').length > 0)
 								{
-									if ($(this).parent('li').children('.dropdown').length === 0)
+									if (li.children('.dropdown').length === 0)
 									{
-										$('nav .dropdown').hide();
-										$("a[rel=open]").attr("rel", "closed");
+										$('nav li').each(function(){
+											w.hideDesktopNavDropdown($(this));
+										});
+										$("li[rel=open]").attr("rel", "closed");
 									}							
-									$(this).attr("rel", "open");
-									w.showDesktopNavDropdown($(this).parent());	
+									li.attr("rel", "open");
+									w.showDesktopNavDropdown(li);	
 								}
 								else
 								{						
 									$('nav .dropdown').hide();
-									$("a[rel=open]").attr("rel", "closed");
-									$(this).attr("rel", "open");
-									w.showDesktopNavDropdown($(this).parent());
+									$("li[rel=open]").attr("rel", "closed");
+									li.attr("rel", "open");
+									w.showDesktopNavDropdown(li);
 								}
 							}
 							return false;
+						});
+						$("body").bind('click',function(e){
+							if(!$(e.target).parents().filter(li).length){
+								w.hideDesktopNavDropdown(li);
+							}
 						});
 					}
 				});
@@ -237,15 +245,24 @@ var width_fix = 1;
 	 * Spaces nav items on desktop
 	 */
 	w.spaceDesktopNav = function(fixnav){
-		$(fixnav).each(function(){	
-			var items = $(this).find('> ul.fullwidth > '+space_tag);
+		$(fixnav).each(function(){
+			var ul=	$(this).find('> ul.fullwidth');
+			var items = ul.find(' > '+space_tag);
 			var item_total = items.length;
-			var nav_width = $(this).find('> ul.fullwidth').width();	
-			var item_width = 0;
+			var nav_width = ul.width();	
+			var items_width = 0;
 			var space;
-			items.css('width','auto').each(function(){item_width+=Math.floor($(this).width());});
+			if(!ul.attr('data-base-width')){
+				items.each(function(){
+					$(this).attr('data-base-width',$(this).css('width','auto').width());
+					items_width+=Math.floor($(this).width());
+				});
+				ul.attr('data-base-width',items_width);
+			}else{
+				items_width=parseInt(ul.attr('data-base-width'));
+			}
 			if (edges && !use_percent){			
-				space = Math.floor((((nav_width-width_fix)-item_width) / ((item_total - (edges ? 1 : 0))*2)));
+				space = Math.floor((((nav_width-width_fix)-items_width) / ((item_total - (edges ? 1 : 0))*2)));
 				if(space){
 					items.each(function(index){
 						if(!edges || index !== 0){ $(this).css(type+'-left',space+'px'); }
@@ -253,21 +270,21 @@ var width_fix = 1;
 					});
 				}
 			}else if (edges && use_percent){
-				space = Math.floor( (nav_width-item_width) / ( (item_total * 2) - 2) );
+				space = Math.floor( (nav_width-items_width) / ( (item_total * 2) - 2) );
 				if(space){
 					items.each(function(index){
-						var newWidth = $(this).width() + ( ( (!index) || (index+1===items.length) ) ? space : space*2);
+						var newWidth = parseInt($(this).attr('data-base-width')) + ( ( (!index) || (index+1===items.length) ) ? space : space*2);
 						var percentOfCt = (newWidth / nav_width)*100;
-						$(this).css('width',percentOfCt.toFixed(2) + '%');
+						$(this).css('width',(percentOfCt.toFixed(2)-0.01) + '%');
 					});
 				}
 			}else{
-				space = Math.floor( (nav_width-item_width) / item_total );
+				space = Math.floor( (nav_width-items_width) / item_total );
 				if(space){
 					items.each(function(){
-						var newWidth = $(this).width() + space;
+						var newWidth = parseInt($(this).attr('data-base-width')) + space;
 						var percentOfCt = (newWidth / nav_width)*100;
-						$(this).css('width',percentOfCt.toFixed(2) + '%');
+						$(this).css('width',(percentOfCt.toFixed(2)-0.01) + '%');
 					});
 				}
 			}
