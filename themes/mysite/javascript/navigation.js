@@ -1,4 +1,4 @@
-var main_nav = "#nav-wrap nav";
+var main_nav = "#nav_wrap nav";
 var touchbound = false;
 
 // Pixel width where nav toggles desktop/mobile
@@ -92,8 +92,10 @@ var width_fix = 1;
 	};
 	
 	w.hideDesktopNavDropdown = function(navItem){
-		if($(navItem).find(":hover").length) { return; }
-		navItem.children('.dropdown').fadeOut(100);
+		setTimeout(function(){
+			if($(navItem).find(":hover").length) { return; }
+			navItem.children('.dropdown').fadeOut(100);
+		},100);
 	};
 	
 	w.isTouch = function() {
@@ -113,39 +115,42 @@ var width_fix = 1;
 						
 						//$(this).children("ul").prepend("<li><a href='"+$(this).children("a").attr("href")+"'>"+$(this).children("a").html()+"</a></li>");
 					
-						$(this).find("a").first().bind('click', function(e){ 
-							e.preventDefault(); 
-							
-							if (li.attr("rel") === "open")
-							{
-								// clicking to close
-								li.attr("rel", "closed");
-								w.hideDesktopNavDropdown(li);
-							}
-							else
-							{
-								// are we clicking another top nav, or a sub nav
-								if ($(this).parents('li[rel=open]').length > 0)
+						$(this).find("a").first().bind('click', function(e){
+							if (!$(":root").hasClass('mobile'))
+							{ 
+								e.preventDefault(); 
+								
+								if (li.attr("rel") === "open")
 								{
-									if (li.children('.dropdown').length === 0)
-									{
-										$('nav li').each(function(){
-											w.hideDesktopNavDropdown($(this));
-										});
-										$("li[rel=open]").attr("rel", "closed");
-									}							
-									li.attr("rel", "open");
-									w.showDesktopNavDropdown(li);	
+									// clicking to close
+									li.attr("rel", "closed");
+									w.hideDesktopNavDropdown(li);
 								}
 								else
-								{						
-									$('nav .dropdown').hide();
-									$("li[rel=open]").attr("rel", "closed");
-									li.attr("rel", "open");
-									w.showDesktopNavDropdown(li);
+								{
+									// are we clicking another top nav, or a sub nav
+									if ($(this).parents('li[rel=open]').length > 0)
+									{
+										if (li.children('.dropdown').length === 0)
+										{
+											$('nav li').each(function(){
+												w.hideDesktopNavDropdown($(this));
+											});
+											$("li[rel=open]").attr("rel", "closed");
+										}							
+										li.attr("rel", "open");
+										w.showDesktopNavDropdown(li);	
+									}
+									else
+									{						
+										$('nav .dropdown').hide();
+										$("li[rel=open]").attr("rel", "closed");
+										li.attr("rel", "open");
+										w.showDesktopNavDropdown(li);
+									}
 								}
+								return false;
 							}
-							return false;
 						});
 						$("body").bind('click',function(e){
 							if(!$(e.target).parents().filter(li).length){
@@ -157,7 +162,7 @@ var width_fix = 1;
 			});
 			
 			touchbound = true;
-			w.responsiveNav(true);
+			w.responsiveNav();
 		}
 	};
 	
@@ -220,7 +225,7 @@ var width_fix = 1;
 								a_tag.addClass('hc');
 								// add the duplicate nav item as a child, but only if not heading page
 								if((!$(this).find('>.dropdown').children('.mobile_top').length)&&(!a_tag.attr('heading'))){$(this).find('>.dropdown').first().prepend('<li class="mobile_top"><a href="'+a_tag.attr('href')+'">'+a_tag.html()+'</a></li>');}
-								a_tag.unbind('click').click(function(e) {
+								a_tag.unbind('click mouseout mouseover').click(function(e) {
 									e.preventDefault();
 									// reset all other nav items
 									$('a').not(this).not("#nav_toggle").each(function(){
@@ -259,6 +264,7 @@ var width_fix = 1;
 				});
 				ul.attr('data-base-width',items_width);
 			}else{
+
 				items_width=parseInt(ul.attr('data-base-width'));
 			}
 			if (edges && !use_percent){			
@@ -290,7 +296,8 @@ var width_fix = 1;
 			}
 		});
 	};
-		
+//	w.setupDesktopNav();
+//	w.addResponsiveAdjustment(w.responsiveNav);
 	$(d).ready(function(){
 		$(w).bind('touchstart', function(){ w.isTouch(); });
 		if (navigator.msMaxTouchPoints) { $(w).bind('MSPointerDown', function(){ w.isTouch(); }); }
