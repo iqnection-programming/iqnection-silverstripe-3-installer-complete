@@ -24,6 +24,10 @@
 		"iqnection-modules/seo":"1.0.*",
 		"iqnection-modules/socialmedia":"1.0.*",
 		"iqnection-modules/security": "1.0.*"
+		"iqnection-pages/contentbuilderpage" : "~0.0",
+		"iqnection-pages/datatables" : "~0.0",
+		"iqnection-modules/linkfield" : "~0.0",
+		"iqnection-modules/embededcontent" : "~0.0"
 	},
 	"require-dev": {
 		"phpunit/PHPUnit": "~3.7@stable"
