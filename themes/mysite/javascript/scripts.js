@@ -55,7 +55,7 @@
 	w.fixIframes = function(iframes){
 		iframes.each(function(){
 			if (!$(this).attr('ratio') && $(this).attr('height') && $(this).attr('width')){
-				$(this).attr('ratio',($(this).attr('height')/$(this).attr('width')));
+				$(this).attr('ratio',(parseInt($(this).attr('height'))/parseInt($(this).attr('width'))));
 				var src=$(this).attr('src');
 				$(this).attr('src',src+((src.indexOf("?") !== -1)?"&":"?")+'wmode=transparent');
 			}
