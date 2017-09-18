@@ -9,19 +9,19 @@
             </ul>
         </nav>
         <ul id="social">
-            <% if $SiteConfig.FacebookURL %><li><a href="$SiteConfig.FacebookURL" id="icon_fb" target="_blank">Like us on Facebook</a></li><% end_if %>
-			<% if $SiteConfig.TwitterURL %><li><a href="$SiteConfig.TwitterURL" id="icon_tw" target="_blank">Follow us on Twitter</a></li><% end_if %>
-			<% if $SiteConfig.LinkedInURL %><li><a href="$SiteConfig.LinkedInURL" id="icon_li" target="_blank">Connect with us on LinkedIn</a></li><% end_if %>
-			<% if $SiteConfig.PinterestURL %><li><a href="$SiteConfig.PinterestURL" id="icon_pin" target="_blank">Follow us on Pinterest</a></li><% end_if %>
-			<% if $SiteConfig.InstagramURL %><li><a href="$SiteConfig.InstagramURL" id="icon_in" target="_blank">Follow us on Instagram</a></li><% end_if %>
-			<% if $SiteConfig.GooglePlusURL %><li><a href="$SiteConfig.GooglePlusURL" id="icon_gp" target="_blank">Like us on GooglePlus</a></li><% end_if %>
-			<% if $SiteConfig.BlogURL %><li><a href="$SiteConfig.BlogURL" id="icon_bl" target="_blank">Check out our Blog</a></li><% end_if %>
-			<% if $SiteConfig.FlickrURL %><li><a href="$SiteConfig.FlickrURL" id="icon_fl" target="_blank">Follow us on Flickr</a></li><% end_if %>
-			<% if $SiteConfig.YouTubeURL %><li><a href="$SiteConfig.YouTubeURL" id="icon_yt" target="_blank">Check our our YouTube Channel</a></li><% end_if %>
-			<% if $SiteConfig.VimeoURL %><li><a href="$SiteConfig.VimeoURL" id="icon_vi" target="_blank">Check out our Vimeo Channel</a></li><% end_if %>
-			<% if $SiteConfig.YelpURL %><li><a href="$SiteConfig.YelpURL" id="icon_yl" target="_blank">Find us on Yelp</a></li><% end_if %>
-			<% if $SiteConfig.TumblrURL %><li><a href="$SiteConfig.TumblrURL" id="icon_tu" target="_blank">Follow us on Tumblr</a></li><% end_if %>
-			<% if $SiteConfig.HouzzURL %><li><a href="$SiteConfig.HouzzURL" id="icon_hz" target="_blank">Find us on Houzz</a></li><% end_if %>
+			<% include SocialIcons Icon=Facebook %>
+			<% include SocialIcons Icon=Twitter %>
+			<% include SocialIcons Icon=Pinterest %>
+			<% include SocialIcons Icon=LinkedIn %>
+			<% include SocialIcons Icon=Instagram %>
+			<% include SocialIcons Icon=Houzz %>
+			<% include SocialIcons Icon=GooglePlus %>
+			<% include SocialIcons Icon=Blog %>
+			<% include SocialIcons Icon=Flickr %>
+			<% include SocialIcons Icon=YouTube %>
+			<% include SocialIcons Icon=Vimeo %>
+			<% include SocialIcons Icon=Yelp %>
+			<% include SocialIcons Icon=Tumblr %>
         </ul><!--social-->
         <p id="copyright">
             Copyright &copy; $CopyrightYear $CopyrightName<br />
