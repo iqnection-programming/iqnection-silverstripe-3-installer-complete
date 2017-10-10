@@ -25,15 +25,6 @@
 		w.runScrollUpdates();
 	};
 	
-	w.responsiveAdjustments = function(){
-		$("#main_wrap").css('min-height','0');
-		var wraps=0;
-		$("body div.wrap").each(function(){wraps+=$(this).outerHeight(true);});
-		if($(w).height() > wraps){
-			$("#main_wrap").css('min-height', ($(w).height() - wraps + $("#main_wrap").height()) + 'px' );
-		}
-	};
-	
 	$(d).ready(function(){
 		w.runResponsiveAdjustments();	
 		$(w).load(function(){
