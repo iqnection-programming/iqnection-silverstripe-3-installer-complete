@@ -25,7 +25,11 @@
         </ul><!--social-->
         <p id="copyright">
             Copyright &copy; $CopyrightYear $CopyrightName<br />
-            <a href="http://www.iqnection.com" target="_blank">Website Design by IQnection - A Digital Marketing Agency</a>
+            <% if ClassName == HomePage %>
+				<a href="http://www.iqnection.com" target="_blank">Website Design by IQnection - A Digital Marketing Agency</a>
+			<% else %>
+				Website Design by IQnection - A Digital Marketing Agency
+			<% end_if %>
         </p>
     </footer>
 </div><!--footer_wrap-->
