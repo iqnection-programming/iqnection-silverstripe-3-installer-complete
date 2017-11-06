@@ -228,7 +228,7 @@ var width_fix = 1;
 								a_tag.unbind('click mouseout mouseover').click(function(e) {
 									e.preventDefault();
 									// reset all other nav items
-									$('a').not(this).not("#nav_toggle").each(function(){
+									$('a').not(this).not($(this).parents('.dropdown').siblings('a')).not("#nav_toggle").each(function(){
 										$(this).removeClass('open').siblings('.dropdown').slideUp();
 									});
 									// toggle this nav item
